@@ -64,7 +64,8 @@ Note: HTTP POST methods are supported in case the client wishes to bypass
 proxies that cache HTTP GET requests/responses but ignore HTTP POST.
 
 ## Download
-You can download a complied version of the server on the releases page 
+You can download a complied version of the server on the 
+[releases page](https://github.com/greenstatic/echo-ip/releases) 
 of this repository.
 
 Note, this software is only for GNU/Linux.
