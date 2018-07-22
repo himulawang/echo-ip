@@ -61,6 +61,12 @@ using the `--port` flag.
 Note: HTTP POST methods are supported in case the client wishes to bypass 
 proxies that cache HTTP GET requests/responses but ignore HTTP POST.
 
+## Download
+You can download a complied version of the server on the releases page 
+of this repository.
+
+Note, this software is only for GNU/Linux.
+
 ## Future Features
 - Let's Encrypt support to automatically refresh certificates and restart
 the server
