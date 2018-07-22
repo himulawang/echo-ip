@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+if [ "$1" == "" ]; then
+    echo "Requires version as the first argument (eg. \"1_0_0\")"
+    exit 1
+fi
+
 # Verify that we are inside echo-ip/scripts dir.
 # This is because we use relative paths, and we
 # assume we are in the echo-ip/scripts directory.
@@ -15,12 +20,12 @@ echo "Verifying we are in the correct directory ..."
 
 if [ "$REVPWD1" != "$REVSCRIPTS" ]; then
     echo "Not in correct dir, cd into: echo-ip/scripts"
-    exit 1
+    exit 2
 fi
 
 if [ "$REVPWD2" != "$REVECHOIP" ]; then
     echo "Not in correct dir, cd into: echo-ip/scripts"
-    exit 1
+    exit 2
 fi
 
 
@@ -43,3 +48,19 @@ echo "Building for: $GOOS/$GOARCH"
 GOOS=$GOOS GOARCH=$GOARCH go build -o ../../bin/$NAME
 
 echo "Build successful"
+
+echo "Compressing ..."
+COMPRESSEDNAME="$NAME"
+COMPRESSEDNAME+="_"
+COMPRESSEDNAME+="$GOOS"
+COMPRESSEDNAME+="_"
+COMPRESSEDNAME+="$GOARCH"
+COMPRESSEDNAME+="_v"
+COMPRESSEDNAME+="$1"
+COMPRESSEDNAME+=".tar.gz"
+
+cd ../../bin
+
+tar -czvf $COMPRESSEDNAME $NAME
+
+echo "Done"
