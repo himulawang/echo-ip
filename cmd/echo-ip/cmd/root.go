@@ -22,7 +22,7 @@ var (
 var rootCmd = &cobra.Command{
 	Use:   "echo-ip",
 	Short: "Returns the client's public IP",
-	Long: `A small go web service to return the client's public IP.'`,
+	Long: `A small Go web service to return the client's public IP.'`,
 	Run: func(cmd *cobra.Command, args []string) {
 
 		server := internal.Server{

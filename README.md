@@ -54,6 +54,8 @@ if both `--cert` and `--privKey` flags are supplied a HTTPS server
 on default port `443` will be started. The port can always be overridden
 using the `--port` flag.
 
+To view the help output run: `echo-ip --help`.
+
 ### Endpoints
 - GET/POST /: IP details response (see example response)
 - GET/POST /health: health information about the web service
@@ -66,6 +68,19 @@ You can download a complied version of the server on the releases page
 of this repository.
 
 Note, this software is only for GNU/Linux.
+
+## Build
+The `scripts/` directory contains two scripts used for building.
+- build.sh: Run this to build the Go project
+- build_clean.sh: Run this after to remove the build(s) that were complied
+
+Note: you **MUST** have your working directory (PWD) inside the `scripts` 
+directory. The script checks this in case you accidentally launch outside
+of the directory.
+
+If the build is successful you will find a new directory `bin` inside the 
+root of the project. Inside you will find the build executable. On 
+`build_clean.sh` this directory will be removed along with all the builds.
 
 ## Future Features
 - Let's Encrypt support to automatically refresh certificates and restart
