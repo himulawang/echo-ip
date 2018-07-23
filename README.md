@@ -117,3 +117,4 @@ the server
 - Reverse IP lookup details in response
 - IP address details in response (using something like GeoIP DB)
 - Would be nice (necessary) to write some tests
+- User agent support in logs
