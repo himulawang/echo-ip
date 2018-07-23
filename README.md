@@ -6,6 +6,7 @@ Features:
 - Apache Common Log Format (CLF)
 - No need for web server or reverse proxy
 - GET & POST support
+- Docker support
 
 ## Example Response
 ### Request
@@ -35,7 +36,7 @@ still explicitly defined in the `ipDetails` field.
 
 ## Server
 ```
-A small go web service to return the client's public IP.'
+A small go web service to return the client's public IP.
 
 Usage:
   echo-ip [flags]
@@ -64,17 +65,42 @@ Note: HTTP POST methods are supported in case the client wishes to bypass
 proxies that cache HTTP GET requests/responses but ignore HTTP POST.
 
 ## Download
-You can download a complied version of the server on the 
+You can download a standalone complied version of the server on the 
 [releases page](https://github.com/greenstatic/echo-ip/releases) 
 of this repository.
 
 Note, this software is only for GNU/Linux.
 
+## Docker Container
+A Docker container is available: [here](https://hub.docker.com/r/greenstatic/echo-ip/).
+
+```bash
+docker pull greenstatic/echo-ip
+```
+
+### Examples
+To run the container here are some examples:
+
+To run a HTTP server:
+```bash
+docker run --name echoip -p 80:8080 -d greenstatic/echo-ip
+```
+The container will by default listen to port `8080`.
+
+To run a HTTPS server (with certificate/key on the local filesystem):
+```bash
+docker run --name echoip -p 443:443 -d -v /home/greenstatic/certs:/cert:ro  greenstatic/echo-ip -c /cert/server.crt -k /cert/server.key
+```
+
 ## Build
-The `scripts/` directory contains two scripts used for building.
-- build.sh <version>: Run this to build the Go project, with a version 
-number (eg. "1_0_0")
-- build_clean.sh: Run this after to remove the build(s) that were complied
+The `scripts/` directory contains three scripts used for building.
+- build_standalone.sh <version>: Run this to build the Go project as a standalone
+executable, with a version number (eg. "1_0_0")
+- build_container.sh <version>: Run this to build a docker container, with
+a version number (eg. 1.0.0 - note the dots instead of the underscores).
+This will build a docker container `echo-ip:<version>`, to change this edit the script.
+- build_clean.sh: Run this after to remove the build(s) that were run 
+(does not touch docker or any docker images).
 
 Note: you **MUST** have your working directory (PWD) inside the `scripts` 
 directory. The script checks this in case you accidentally launch outside

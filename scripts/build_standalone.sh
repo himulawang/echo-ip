@@ -45,6 +45,7 @@ GOOS="linux"
 GOARCH="amd64"
 
 echo "Building for: $GOOS/$GOARCH"
+#CGO_ENABLED=0 GOOS=$GOOS GOARCH=$GOARCH go build -a -installsuffix cgo -o ../../bin/$NAME
 GOOS=$GOOS GOARCH=$GOARCH go build -o ../../bin/$NAME
 
 echo "Build successful"
