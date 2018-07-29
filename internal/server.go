@@ -1,32 +1,31 @@
 package internal
 
 import (
-	"net/http"
-	"github.com/gorilla/mux"
-	"time"
-	"log"
 	"fmt"
-	"strconv"
 	"github.com/gorilla/handlers"
+	"github.com/gorilla/mux"
+	"log"
+	"net/http"
 	"os"
+	"strconv"
+	"time"
 )
 
 const (
-	httpPort = "80"
+	httpPort  = "80"
 	httpsPort = "443"
-	timeout = 5 // seconds
+	timeout   = 5 // seconds
 )
 
 var version string
 
 type Server struct {
-	Version string
-	Port uint16
-	BindIP string
+	Version     string
+	Port        uint16
+	BindIP      string
 	Certificate string
-	PrivateKey string
+	PrivateKey  string
 }
-
 
 func (server *Server) StartServer() {
 	version = server.Version
@@ -39,7 +38,6 @@ func (server *Server) StartServer() {
 	http.Handle("/", r)
 
 	loggedRouter := handlers.LoggingHandler(os.Stdout, r)
-
 
 	https := false
 

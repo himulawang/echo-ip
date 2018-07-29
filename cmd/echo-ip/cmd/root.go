@@ -1,11 +1,11 @@
 package cmd
 
 import (
-	"github.com/spf13/cobra"
 	"fmt"
-	"os"
-	"echo-ip/internal"
+	"github.com/greenstatic/echo-ip/internal"
+	"github.com/spf13/cobra"
 	"net"
+	"os"
 )
 
 const (
@@ -13,16 +13,16 @@ const (
 )
 
 var (
-	port uint16
-	bindIP net.IP
+	port        uint16
+	bindIP      net.IP
 	certificate string
-	privateKey string
+	privateKey  string
 )
 
 var rootCmd = &cobra.Command{
 	Use:   "echo-ip",
 	Short: "Returns the client's public IP",
-	Long: `A small Go web service to return the client's public IP.`,
+	Long:  `A small Go web service to return the client's public IP.`,
 	Run: func(cmd *cobra.Command, args []string) {
 
 		server := internal.Server{
@@ -38,11 +38,11 @@ var rootCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.Flags().Uint16VarP(&port,"port", "p", 0, "Port to listen to")
-	rootCmd.Flags().IPVarP(&bindIP,"bind", "b", net.IP{0,0,0,0}, "Bind to IP")
+	rootCmd.Flags().Uint16VarP(&port, "port", "p", 0, "Port to listen to")
+	rootCmd.Flags().IPVarP(&bindIP, "bind", "b", net.IP{0, 0, 0, 0}, "Bind to IP")
 
-	rootCmd.Flags().StringVarP(&certificate, "cert", "c","", "Server's HTTPS certificate")
-	rootCmd.Flags().StringVarP(&privateKey, "privKey", "k","", "Server's certificate private key")
+	rootCmd.Flags().StringVarP(&certificate, "cert", "c", "", "Server's HTTPS certificate")
+	rootCmd.Flags().StringVarP(&privateKey, "privKey", "k", "", "Server's certificate private key")
 }
 
 func Execute() {

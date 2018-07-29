@@ -1,10 +1,10 @@
 package internal
 
 import (
-	"net/http"
 	"encoding/json"
-	"time"
+	"net/http"
 	"strings"
+	"time"
 )
 
 const service = "echo-ip"
@@ -16,7 +16,7 @@ func ipHandler(w http.ResponseWriter, r *http.Request) {
 
 	// This works for IPv6 and IPv4
 	remoteSocketSplit := strings.Split(remoteSocket, ":")
-	remoteIP := strings.Join(remoteSocketSplit[:len(remoteSocketSplit) - 1], ":")
+	remoteIP := strings.Join(remoteSocketSplit[:len(remoteSocketSplit)-1], ":")
 
 	ip := remoteIP
 
@@ -28,18 +28,18 @@ func ipHandler(w http.ResponseWriter, r *http.Request) {
 
 	// Response
 	type IPDetails struct {
-		RemoteIP string `json:"remoteIP"`
+		RemoteIP      string `json:"remoteIP"`
 		XForwardedFor string `json:"forwardedForIP"`
 	}
 
-	resp := struct{
-		Success bool `json:"success"`
-		IP string `json:"ip"`
-		Datetime string `json:"datetime"`
+	resp := struct {
+		Success   bool      `json:"success"`
+		IP        string    `json:"ip"`
+		Datetime  string    `json:"datetime"`
 		IPDetails IPDetails `json:"ipDetails"`
-		Service string `json:"service"`
-		Version string `json:"version"`
-		SrcUrl string `json:"srcUrl"`
+		Service   string    `json:"service"`
+		Version   string    `json:"version"`
+		SrcUrl    string    `json:"srcUrl"`
 	}{
 		true,
 		ip,
@@ -58,11 +58,10 @@ func ipHandler(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(resp)
 }
 
-
 func healthHandler(w http.ResponseWriter, r *http.Request) {
-	resp := struct{
-		Success bool `json:"success"`
-		Health string `json:"health"`
+	resp := struct {
+		Success  bool   `json:"success"`
+		Health   string `json:"health"`
 		Datetime string `json:"datetime"`
 	}{
 		true,
@@ -78,9 +77,9 @@ func healthHandler(w http.ResponseWriter, r *http.Request) {
 func notFoundHandler(w http.ResponseWriter, r *http.Request) {
 	const status = http.StatusNotFound
 
-	resp := struct{
-		Success bool `json:"success"`
-		Error string `json:"error"`
+	resp := struct {
+		Success  bool   `json:"success"`
+		Error    string `json:"error"`
 		Datetime string `json:"datetime"`
 	}{
 		false,
