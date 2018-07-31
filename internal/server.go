@@ -5,6 +5,7 @@ import (
 	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
 	"log"
+	"net"
 	"net/http"
 	"os"
 	"strconv"
@@ -55,7 +56,7 @@ func (server *Server) StartServer() {
 		}
 	}
 
-	socket := fmt.Sprintf("%s:%s", server.BindIP, port)
+	socket := net.JoinHostPort(server.BindIP, strconv.Itoa(int(server.Port)))
 
 	srv := &http.Server{
 		Handler:      loggedRouter,

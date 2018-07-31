@@ -2,6 +2,7 @@ package internal
 
 import (
 	"encoding/json"
+	"net"
 	"net/http"
 	"strings"
 	"time"
@@ -20,8 +21,9 @@ func ipHandler(w http.ResponseWriter, r *http.Request) {
 
 	ip := remoteIP
 
-	forwardedForIP := r.Header.Get("X-Forwarded-For")
+	isIpv6 := net.ParseIP(ip).To4() == nil
 
+	forwardedForIP := r.Header.Get("X-Forwarded-For")
 	if forwardedForIP != "" {
 		ip = forwardedForIP
 	}
@@ -35,6 +37,7 @@ func ipHandler(w http.ResponseWriter, r *http.Request) {
 	resp := struct {
 		Success   bool      `json:"success"`
 		IP        string    `json:"ip"`
+		IsIPv6    bool      `json:"isIpv6"`
 		Datetime  string    `json:"datetime"`
 		IPDetails IPDetails `json:"ipDetails"`
 		Service   string    `json:"service"`
@@ -43,6 +46,7 @@ func ipHandler(w http.ResponseWriter, r *http.Request) {
 	}{
 		true,
 		ip,
+		isIpv6,
 		time.Now().Format(time.RFC3339),
 		IPDetails{
 			remoteIP,
