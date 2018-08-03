@@ -30,7 +30,7 @@ fi
 
 
 NAMEBUILD="echo-ip_container"
-NAME="echo-ip"
+NAME="greenstatic/echo-ip"
 
 cd ../
 
