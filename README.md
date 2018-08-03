@@ -3,6 +3,7 @@ A small Go web service to return the client's public IP.
 
 Features:
 - HTTP/HTTPS support
+- IPv4/IPv6 support
 - Apache Common Log Format (CLF)
 - No need for web server or reverse proxy
 - GET & POST support
@@ -24,7 +25,7 @@ GET /
         "forwardedForIP": ""
     },
     "service": "echo-ip",
-    "version": "1.0.0",
+    "version": "1.2.0",
     "srcUrl": "https://github.com/greenstatic/echo-ip"
 }
 ```
@@ -54,6 +55,8 @@ By default the server will try to listen to port `80` (HTTP) however
 if both `--cert` and `--privKey` flags are supplied a HTTPS server 
 on default port `443` will be started. The port can always be overridden
 using the `--port` flag.
+
+To run the server in IPv6 mode bind the address to `::`.
 
 To view the help output run: `echo-ip --help`.
 
