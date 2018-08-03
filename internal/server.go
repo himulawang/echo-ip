@@ -13,8 +13,8 @@ import (
 )
 
 const (
-	httpPort  = "80"
-	httpsPort = "443"
+	httpPort  = 80
+	httpsPort = 443
 	timeout   = 5 // seconds
 )
 
@@ -46,9 +46,9 @@ func (server *Server) StartServer() {
 		https = true
 	}
 
-	port := strconv.Itoa(int(server.Port))
+	port := int(server.Port)
 
-	if port == "0" {
+	if port == 0 {
 		if https {
 			port = httpsPort
 		} else {
@@ -56,7 +56,7 @@ func (server *Server) StartServer() {
 		}
 	}
 
-	socket := net.JoinHostPort(server.BindIP, strconv.Itoa(int(server.Port)))
+	socket := net.JoinHostPort(server.BindIP, strconv.Itoa(port))
 
 	srv := &http.Server{
 		Handler:      loggedRouter,
