@@ -18,6 +18,9 @@ func ipHandler(w http.ResponseWriter, r *http.Request) {
 	// This works for IPv6 and IPv4
 	remoteSocketSplit := strings.Split(remoteSocket, ":")
 	remoteIP := strings.Join(remoteSocketSplit[:len(remoteSocketSplit)-1], ":")
+	// Remove brackets [] in case it is an IPv6 address with brackets
+	remoteIP = strings.TrimSuffix(remoteIP, "]")
+	remoteIP = strings.TrimPrefix(remoteIP, "[")
 
 	ip := remoteIP
 
@@ -25,6 +28,10 @@ func ipHandler(w http.ResponseWriter, r *http.Request) {
 
 	forwardedForIP := r.Header.Get("X-Forwarded-For")
 	if forwardedForIP != "" {
+		// Remove brackets [] in case it is an IPv6 address with brackets
+		forwardedForIP = strings.TrimSuffix(forwardedForIP, "]")
+		forwardedForIP = strings.TrimPrefix(forwardedForIP, "[")
+
 		ip = forwardedForIP
 	}
 
