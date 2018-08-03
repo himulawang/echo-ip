@@ -111,6 +111,12 @@ root of the project. Inside you will find the build executable and a
 compressed tar.gz file. On `build_clean.sh` this directory will be 
 removed along with all the builds and compressed files.
 
+## Devlopment
+Install dependencies using (working directory must be the root of the repository):
+```bash
+go get ./...
+```
+
 ## Future Features
 - Let's Encrypt support to automatically refresh certificates and restart
 the server
