@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"fmt"
-	"github.com/greenstatic/echo-ip/internal"
+	"github.com/himulawang/echo-ip/internal"
 	"github.com/spf13/cobra"
 	"net"
 	"os"

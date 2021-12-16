@@ -1,6 +1,6 @@
 package main
 
-import "github.com/greenstatic/echo-ip/cmd/echo-ip/cmd"
+import "github.com/himulawang/echo-ip/cmd/echo-ip/cmd"
 
 func main() {
 	cmd.Execute()

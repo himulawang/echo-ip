@@ -26,7 +26,7 @@ GET /
     },
     "service": "echo-ip",
     "version": "1.2.0",
-    "srcUrl": "https://github.com/greenstatic/echo-ip"
+    "srcUrl": "https://github.com/himulawang/echo-ip"
 }
 ```
 
@@ -69,16 +69,16 @@ proxies that cache HTTP GET requests/responses but ignore HTTP POST.
 
 ## Download
 You can download a standalone complied version of the server on the 
-[releases page](https://github.com/greenstatic/echo-ip/releases) 
+[releases page](https://github.com/himulawang/echo-ip/releases) 
 of this repository.
 
 Note, this software is only for GNU/Linux.
 
 ## Docker Container
-A Docker container is available: [here](https://hub.docker.com/r/greenstatic/echo-ip/).
+A Docker container is available: [here](https://hub.docker.com/r/himulawang/echo-ip/).
 
 ```bash
-docker pull greenstatic/echo-ip
+docker pull himulawang/echo-ip
 ```
 
 ### Examples
@@ -86,13 +86,13 @@ To run the container here are some examples:
 
 To run a HTTP server:
 ```bash
-docker run --name echoip -p 80:8080 -d greenstatic/echo-ip
+docker run --name echoip -p 80:8080 -d himulawang/echo-ip
 ```
 The container will by default listen to port `8080`.
 
 To run a HTTPS server (with certificate/key on the local filesystem):
 ```bash
-docker run --name echoip -p 443:443 -d -v /home/greenstatic/certs:/cert:ro  greenstatic/echo-ip -c /cert/server.crt -k /cert/server.key
+docker run --name echoip -p 443:443 -d -v /home/himulawang/certs:/cert:ro  himulawang/echo-ip -c /cert/server.crt -k /cert/server.key
 ```
 
 ## Build

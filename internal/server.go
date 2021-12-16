@@ -18,8 +18,6 @@ const (
 	timeout   = 5 // seconds
 )
 
-var version string
-
 type Server struct {
 	Version     string
 	Port        uint16
@@ -29,8 +27,6 @@ type Server struct {
 }
 
 func (server *Server) StartServer() {
-	version = server.Version
-
 	r := mux.NewRouter()
 	r.HandleFunc("/", ipHandler).Methods("GET", "POST")
 	r.HandleFunc("/health", healthHandler).Methods("GET", "POST")
